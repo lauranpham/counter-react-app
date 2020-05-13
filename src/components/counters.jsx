@@ -1,54 +1,24 @@
 import React, { Component } from "react";
 import Counter from "./counter";
 
+// controlled components since state was lifted to App
 class Counters extends Component {
-  state = {
-    counters: [
-      { id: 1, value: 4 },
-      { id: 2, value: 0 },
-      { id: 3, value: 0 },
-      { id: 4, value: 0 },
-    ],
-  };
-
-  handleIncrement = (counter) => {
-    const counters = [...this.state.counters];
-    const index = counters.indexOf(counter);
-    counters[index] = { ...counter };
-    counters[index].value++;
-    this.setState({ counters });
-  };
-
-  handleDelete = (counterId) => {
-    const counters = this.state.counters.filter((c) => c.id !== counterId);
-    // key and value is the same, can just write counters
-    this.setState({ counters });
-  };
-
-  handleReset = () => {
-    const counters = this.state.counters.map((c) => {
-      c.value = 0;
-      return c;
-    });
-    this.setState({ counters });
-  };
-
   render() {
     return (
       // onDelete for the name of event in child and handleDelete for handling in parent
       <div className="container">
-        <button onClick={this.handleReset} className="btn btn-primary btn-sm">
+        <button onClick={this.props.onReset} className="btn btn-primary btn-sm">
           Reset
         </button>
-        {this.state.counters.map((counter) => (
+        {this.props.counters.map((counter) => (
           // value and selected are props that pass to Counter from Counters
           // Can render children to a component but changing it from a self closing tag to ...
           // useful for passing bigger and dynamic element e.g. dialogue box.
           <Counter
             key={counter.id}
             // value={counter.value}
-            onDelete={this.handleDelete}
-            onIncrement={this.handleIncrement}
+            onDelete={this.props.onDelete}
+            onIncrement={this.props.onIncrement}
             // id={counter.id}
             // counter encapsulates all properties of counter i.e. id and value
             counter={counter}

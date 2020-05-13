@@ -75,10 +75,11 @@ sfc tab
 
 ### LIFECYCLE HOOKS
 
+Only available for Classes not SFC
 MOUNT
-constructor()
+constructor() - place to initialize the properties/state of the class
 render()
-componentDidMount()
+componentDidMount()- place to AJAX calls to get data from the server
 UPDATE
 render()
 componentDidUpdate()

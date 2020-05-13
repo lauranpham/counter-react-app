@@ -2,13 +2,14 @@ import React, { Component } from "react";
 // imrc tab
 
 // cc tab
+// controlled component - NO STATE! controlled by parents
 class Counter extends Component {
-  state = {
-    value: this.props.counter.value,
-    // generates a random 200 x 200 photo
-    // imageUrl: "https://picsum.photos/200",
-    // tags: ["tag1", "tag2", "tag3"],
-  };
+  // state = {
+  //   value: this.props.counter.value,
+  //   // generates a random 200 x 200 photo
+  //   // imageUrl: "https://picsum.photos/200",
+  //   // tags: ["tag1", "tag2", "tag3"],
+  // };
   // can add styles directly into jsx as an object. font size compiles to px
   // pass as style= {this.styles}
   // alternatively inline style= {{fontSize: 10, fontWeight:"bold"}}
@@ -19,15 +20,6 @@ class Counter extends Component {
   // event handlers are named handle... and are arrow functions to bind event handler to this
   // arrow function inherits automatically
   // or this.handleIncrement = this.handleIncrement.bind(this) in constructor
-  handleIncrement = () => {
-    // Helps with debugging
-    console.log("Increment clicked", this);
-    // nothing is passed from event. Just need to increment the value state
-    // setState updates the view
-    this.setState({
-      value: this.state.value + 1,
-    });
-  };
 
   render() {
     // variables within render can be called without this.
@@ -50,7 +42,7 @@ class Counter extends Component {
             {this.formatValue()}
           </span>
           <button
-            onClick={this.handleIncrement}
+            onClick={() => this.props.onIncrement(this.props.counter)}
             // onClick={() => this.handleIncrement(product)} use arrow function to event to pass argument that are not this
             className="btn btn-secondary btn-sm"
           >
@@ -73,13 +65,13 @@ class Counter extends Component {
   getBadgeClasses() {
     let classes = "badge m-2 badge-";
     // append different classes depending on the state
-    classes += this.state.value === 0 ? "warning" : "primary";
+    classes += this.props.counter.value === 0 ? "warning" : "primary";
     return classes;
   }
 
   formatValue() {
     // Can utilise the key values of an object using {}
-    const { value } = this.state;
+    const { value } = this.props.counter;
     // jsx expressions get compiled to react elements and can be passed to functions
     // and variables
     return value === 0 ? "Zero" : value;

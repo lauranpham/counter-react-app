@@ -4,7 +4,7 @@ import React, { Component } from "react";
 // cc tab
 class Counter extends Component {
   state = {
-    value: this.props.value,
+    value: this.props.counter.value,
     // generates a random 200 x 200 photo
     // imageUrl: "https://picsum.photos/200",
     // tags: ["tag1", "tag2", "tag3"],
@@ -41,20 +41,31 @@ class Counter extends Component {
       // Bootstrap can be applied directly without reactstrap
       // (list can be mapped with a unique key)
       // logical && operator can be used for non booleans since strings are considered truthy and returns the second operand
-      <div className="row my-2">
-        {/* <img src={this.state.imageUrl} alt="" /> */}
-        <span style={this.styles} className={this.getBadgeClasses()}>
-          {this.formatValue()}
-        </span>
-        <button
-          onClick={this.handleIncrement}
-          // onClick={() => this.handleIncrement(product)} use arrow function to event to pass argument that are not this
-          className="btn btn-secondary btn-sm"
-        >
-          Increment
-        </button>
-        {/* {this.state.tags.length === 0 && "Please create a new tag"}
+      // Any children passed to component can be rendered in {}
+      <div>
+        {this.props.children}
+        <div className="row my-2">
+          {/* <img src={this.state.imageUrl} alt="" /> */}
+          <span style={this.styles} className={this.getBadgeClasses()}>
+            {this.formatValue()}
+          </span>
+          <button
+            onClick={this.handleIncrement}
+            // onClick={() => this.handleIncrement(product)} use arrow function to event to pass argument that are not this
+            className="btn btn-secondary btn-sm"
+          >
+            Increment
+          </button>
+          {/* {this.state.tags.length === 0 && "Please create a new tag"}
         {this.renderTags()} */}
+          <button
+            // arrow function to pass an argument to function
+            onClick={() => this.props.onDelete(this.props.counter.id)}
+            className="btn btn-danger btn-sm"
+          >
+            Delete
+          </button>
+        </div>
       </div>
     );
   }

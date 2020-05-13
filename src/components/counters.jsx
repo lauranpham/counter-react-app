@@ -32,11 +32,12 @@ class Counters extends Component {
     });
     this.setState({ counters });
   };
+
   render() {
     return (
       // onDelete for the name of event in child and handleDelete for handling in parent
       <div className="container">
-        <button className="btn btn-primary btn-sm" onClick={this.handleReset}>
+        <button onClick={this.handleReset} className="btn btn-primary btn-sm">
           Reset
         </button>
         {this.state.counters.map((counter) => (

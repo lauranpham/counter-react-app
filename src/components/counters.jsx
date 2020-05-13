@@ -11,24 +11,12 @@ class Counters extends Component {
     ],
   };
 
-  handleIncrement = () => {
-    // Helps with debugging
-    console.log("Increment clicked", this);
-    // nothing is passed from event. Just need to increment the count state
-    // setState updates the view
-    this.setState({
-      value: this.props.value + 1,
-    });
-  };
-
-  handleIncrement = () => {
-    // Helps with debugging
-    console.log("Increment clicked", this);
-    // nothing is passed from event. Just need to increment the value state
-    // setState updates the view
-    this.setState({
-      value: this.props.counter.value + 1,
-    });
+  handleIncrement = (counter) => {
+    const counters = [...this.state.counters];
+    const index = counters.indexOf(counter);
+    counters[index] = { ...counter };
+    counters[index].value++;
+    this.setState({ counters });
   };
 
   handleDelete = (counterId) => {

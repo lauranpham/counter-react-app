@@ -72,3 +72,15 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 imrc tab
 cc tab
 sfc tab
+
+### LIFECYCLE HOOKS
+
+MOUNT
+constructor()
+render()
+componentDidMount()
+UPDATE
+render()
+componentDidUpdate()
+UNMOUNT
+componentWillUnmount()

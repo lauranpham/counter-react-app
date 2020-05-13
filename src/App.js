@@ -4,14 +4,33 @@ import Counters from "./components/counters";
 import "./App.css";
 
 class App extends Component {
-  state = {
-    counters: [
-      { id: 1, value: 4 },
-      { id: 2, value: 0 },
-      { id: 3, value: 0 },
-      { id: 4, value: 0 },
-    ],
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      counters: [
+        { id: 1, value: 4 },
+        { id: 2, value: 0 },
+        { id: 3, value: 0 },
+        { id: 4, value: 0 },
+      ],
+    };
+  }
+
+  componentDidMount() {
+    // Ajax Call
+    // this.setState({movies});
+  }
+
+  // componentDidUpdate(prevProps,prevState ){
+  //   console.log("prevProps", prevProps)
+  //   console.log("prevState", prevState)
+  //   if (prevProps.counter.value !== this.props.counter.value){
+  //     // Ajax call and get new data from the server
+  //   }
+  // }
+
+  // componentWillUnmount(){
+  // }
 
   handleIncrement = (counter) => {
     const counters = [...this.state.counters];

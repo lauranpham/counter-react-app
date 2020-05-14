@@ -16,22 +16,6 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
-    // Ajax Call
-    // this.setState({movies});
-  }
-
-  // componentDidUpdate(prevProps,prevState ){
-  //   console.log("prevProps", prevProps)
-  //   console.log("prevState", prevState)
-  //   if (prevProps.counter.value !== this.props.counter.value){
-  //     // Ajax call and get new data from the server
-  //   }
-  // }
-
-  // componentWillUnmount(){
-  // }
-
   handleIncrement = (counter) => {
     const counters = [...this.state.counters];
     const index = counters.indexOf(counter);
@@ -42,7 +26,6 @@ class App extends Component {
 
   handleDelete = (counterId) => {
     const counters = this.state.counters.filter((c) => c.id !== counterId);
-    // key and value is the same, can just write counters
     this.setState({ counters });
   };
 
